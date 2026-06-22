@@ -1,7 +1,7 @@
 import time
 from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QLabel, 
                                QPushButton, QFrame, QScrollArea, QSlider,
-                               QComboBox, QMessageBox, QDialog)
+                               QComboBox, QMessageBox, QDialog, QGridLayout)
 from PySide6.QtGui import QColor, QFont, QPainter, QPixmap
 from PySide6.QtCore import Qt, QTimer, QSize
 
