@@ -20,13 +20,13 @@ class WebSocketClient(QObject):
         self.mock_timer.timeout.connect(self._mock_tick)
         self.emotions = ["happy", "thinking", "sleepy", "curious", "excited"]
 
-    def connect(self):
+    def start(self):
         if self.mock_mode:
             QTimer.singleShot(500, self._mock_connect)
         else:
             asyncio.create_task(self._real_connect())
 
-    def disconnect(self):
+    def stop(self):
         if self.mock_mode:
             self.mock_timer.stop()
             self.connected_flag = False

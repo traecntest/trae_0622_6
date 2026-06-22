@@ -333,7 +333,7 @@ class MainWindow(QMainWindow):
         self.tray_icon.show()
 
     def _connect_websocket(self):
-        self.ws_client.connect()
+        self.ws_client.start()
         result = self.api_client.get_device_status()
         if result.get("code") == 0:
             self._update_device_status(result["data"])
@@ -443,5 +443,5 @@ class MainWindow(QMainWindow):
             self.activateWindow()
 
     def closeEvent(self, event):
-        self.ws_client.disconnect()
+        self.ws_client.stop()
         event.accept()

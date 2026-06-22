@@ -444,7 +444,7 @@ class ProfilePage(QWidget):
 
     def _do_logout(self):
         self.main_window.auth_service.logout()
-        self.main_window.ws_client.disconnect()
+        self.main_window.ws_client.stop()
         
         from ui.login_page import LoginPage
         self.login_page = LoginPage(self.main_window.db, self.main_window.auth_service)
