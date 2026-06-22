@@ -117,6 +117,7 @@ class LoginPage(QWidget):
         self.code_input = QLineEdit()
         self.code_input.setPlaceholderText("请输入验证码")
         self.code_input.setMaxLength(6)
+        self.code_input.textChanged.connect(self._on_code_changed)
         self.code_input.returnPressed.connect(self._on_login_clicked)
         code_input_layout.addWidget(self.code_input, 1)
 
@@ -206,6 +207,18 @@ class LoginPage(QWidget):
             self.phone_input.setStyleSheet("")
         
         self.send_code_btn.setEnabled(valid)
+        self._update_login_btn()
+
+    def _on_code_changed(self, text):
+        valid, msg = self._validate_code(text)
+        self.code_error.setText(msg)
+        self.code_error.setVisible(not valid and len(text) > 0)
+        
+        if not valid and len(text) > 0:
+            self.code_input.setStyleSheet(get_error_input_style())
+        else:
+            self.code_input.setStyleSheet("")
+        
         self._update_login_btn()
 
     def _on_code_input_return(self):
