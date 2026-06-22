@@ -76,18 +76,20 @@ class ProfilePage(QWidget):
         name_label.setFont(name_font)
         info_layout.addWidget(name_label)
 
-        phone = self.main_window.auth_service.current_user.get("phone", "") if self.main_window.auth_service.current_user else ""
-        phone_label = QLabel(f"📱 {phone[:3]}****{phone[-4:]}")
+        phone = self.main_window.auth_service.current_user.get("phone") or "" if self.main_window.auth_service.current_user else ""
+        phone_display = f"{phone[:3]}****{phone[-4:]}" if len(phone) == 11 else phone
+        phone_label = QLabel(f"📱 {phone_display}")
         phone_label.setStyleSheet(f"color: {COLORS['text_light']}; font-size: 14px;")
         info_layout.addWidget(phone_label)
 
-        child_name = self.main_window.auth_service.current_user.get("child_name", "未绑定") if self.main_window.auth_service.current_user else "未绑定"
-        child_age = self.main_window.auth_service.current_user.get("child_age", 0) if self.main_window.auth_service.current_user else 0
+        child_name = self.main_window.auth_service.current_user.get("child_name") or "未绑定" if self.main_window.auth_service.current_user else "未绑定"
+        child_age = self.main_window.auth_service.current_user.get("child_age") if self.main_window.auth_service.current_user else 0
+        child_age = child_age if child_age is not None else 0
         child_label = QLabel(f"👦 {child_name}" + (f" · {child_age}岁" if child_age > 0 else ""))
         child_label.setStyleSheet(f"color: {COLORS['text_light']}; font-size: 14px;")
         info_layout.addWidget(child_label)
 
-        device_serial = self.main_window.auth_service.current_user.get("device_serial", "未绑定") if self.main_window.auth_service.current_user else "未绑定"
+        device_serial = self.main_window.auth_service.current_user.get("device_serial") or "未绑定" if self.main_window.auth_service.current_user else "未绑定"
         device_label = QLabel(f"🤖 设备: {device_serial}")
         device_label.setStyleSheet(f"color: {COLORS['text_light']}; font-size: 14px;")
         info_layout.addWidget(device_label)

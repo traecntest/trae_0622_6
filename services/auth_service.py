@@ -16,12 +16,12 @@ class AuthService:
         if result:
             self.current_user = {
                 "id": result[0],
-                "phone": result[1],
+                "phone": result[1] or "",
                 "token": decrypt(result[2]) if result[2] else None,
                 "token_expiry": result[3],
-                "child_name": result[4],
-                "child_age": result[5],
-                "device_serial": result[6]
+                "child_name": result[4] or "",
+                "child_age": result[5] if result[5] is not None else 0,
+                "device_serial": result[6] or ""
             }
             if self.current_user["token"]:
                 self.api_client.token = self.current_user["token"]

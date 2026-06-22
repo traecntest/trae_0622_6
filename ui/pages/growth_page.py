@@ -65,7 +65,7 @@ class GrowthPage(QWidget):
         greeting_layout = QVBoxLayout()
         greeting_layout.setSpacing(4)
 
-        child_name = self.main_window.auth_service.current_user.get("child_name", "宝贝") if self.main_window.auth_service.current_user else "宝贝"
+        child_name = self.main_window.auth_service.current_user.get("child_name") or "宝贝" if self.main_window.auth_service.current_user else "宝贝"
         title_label = QLabel(f"{child_name}的成长档案")
         title_font = QFont()
         title_font.setPointSize(20)

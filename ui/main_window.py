@@ -153,7 +153,7 @@ class MainWindow(QMainWindow):
         self.unread_badge.move(22, 2)
         self._update_unread_badge()
 
-        user_name = self.auth_service.current_user.get("child_name", "用户") if self.auth_service.current_user else "用户"
+        user_name = self.auth_service.current_user.get("child_name") or "用户" if self.auth_service.current_user else "用户"
         self.user_btn = AnimatedButton(f"👤 {user_name}")
         self.user_btn.setFixedHeight(36)
         self.user_btn.setStyleSheet(f"""

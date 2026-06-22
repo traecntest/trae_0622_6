@@ -56,7 +56,7 @@ class HomePage(QWidget):
         greeting_label.setFont(greeting_font)
         greeting_layout.addWidget(greeting_label)
 
-        child_name = self.main_window.auth_service.current_user.get("child_name", "宝贝") if self.main_window.auth_service.current_user else "宝贝"
+        child_name = self.main_window.auth_service.current_user.get("child_name") or "宝贝" if self.main_window.auth_service.current_user else "宝贝"
         subtitle_label = QLabel(f"今天也要和{child_name}一起加油哦！💪")
         subtitle_label.setStyleSheet(f"color: {COLORS['text_light']}; font-size: 14px;")
         greeting_layout.addWidget(subtitle_label)
@@ -142,7 +142,7 @@ class HomePage(QWidget):
 
         layout.addStretch()
 
-        device_serial = self.main_window.auth_service.current_user.get("device_serial", "未绑定") if self.main_window.auth_service.current_user else "未绑定"
+        device_serial = self.main_window.auth_service.current_user.get("device_serial") or "未绑定" if self.main_window.auth_service.current_user else "未绑定"
         serial_label = QLabel(f"设备号: {device_serial}")
         serial_label.setAlignment(Qt.AlignCenter)
         serial_label.setStyleSheet(f"color: {COLORS['text_light']}; font-size: 12px;")

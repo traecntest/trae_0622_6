@@ -106,7 +106,7 @@ class ChatPage(QWidget):
         info_layout = QVBoxLayout()
         info_layout.setSpacing(2)
 
-        child_name = self.main_window.auth_service.current_user.get("child_name", "宝贝") if self.main_window.auth_service.current_user else "宝贝"
+        child_name = self.main_window.auth_service.current_user.get("child_name") or "宝贝" if self.main_window.auth_service.current_user else "宝贝"
         name_label = QLabel(child_name)
         name_font = QFont()
         name_font.setPointSize(15)
